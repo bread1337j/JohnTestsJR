@@ -1,4 +1,4 @@
-public class Test {
+public class ExampleFunctions {
 
     public static int subtract(Integer[] arr) {
         return arr[0] - arr[1];
