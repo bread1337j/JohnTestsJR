@@ -7,4 +7,5 @@ public class ExampleFunctions {
     public static Integer add(Integer[] arr) {
         return arr[0] + arr[1];
     }
+
 }

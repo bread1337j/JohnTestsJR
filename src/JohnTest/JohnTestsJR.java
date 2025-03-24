@@ -1,5 +1,6 @@
 package JohnTest;
 
+import java.awt.*;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,6 +21,8 @@ public class JohnTestsJR { //first name John last name JR
     private ArrayList<String> got;
     private ArrayList<String> out;
     private ArrayList<Long> times;
+    private Class<?> T1;
+    private Class<?> T2;
     private int size;
 
     public JohnTestsJR(){
@@ -35,9 +38,7 @@ public class JohnTestsJR { //first name John last name JR
         size = 0;
     }
 
-    public void queue(Function f, Object arg, String expected){
-       add(f, new Object[]{arg}, expected);
-    }
+
     public void queue(Function f, Object[] args, String expected){
         add(f, args, expected);
     }
@@ -49,8 +50,9 @@ public class JohnTestsJR { //first name John last name JR
     }
 
     public void fire(){
+        long time = System.nanoTime();
         for(int i=0; i<size; i++){
-            long time = System.nanoTime();
+            time = System.nanoTime();
             Function<Object[], Object> f = ops.get(i);
             Object[] args = in.get(i);
             Object tempOut = f.apply(args); //done this way to track time more accurately
@@ -64,7 +66,8 @@ public class JohnTestsJR { //first name John last name JR
         System.out.println(out);
         System.out.println(times);
         System.out.println(size);
-        System.out.println(BuildStringer(true, 1, "ns"));
+        //System.out.println(BuildStringer(true, 1_000_000, "ms"));
+        runScreen();
     }
     private String multiplyString(String s, int n){
         StringBuilder out = new StringBuilder();
@@ -73,7 +76,7 @@ public class JohnTestsJR { //first name John last name JR
         }
         return out.toString();
     }
-    private JohnTest makeTest(int i, boolean isShort, int timeBase, String timeType){
+    public JohnTest makeTest(int i, boolean isShort, int timeBase, String timeType){
         String comparator = out.get(i); //two hardest things in programming: cache invalidation and naming things.
         String comparee = got.get(i);
         int len = 30 - out.get(i).length();
@@ -94,7 +97,7 @@ public class JohnTestsJR { //first name John last name JR
         }
         return new JohnTest(("" + i) + multiplyString(" ", 7-("" + i).length()) + "| " +
                 comparator + multiplyString(" ", len) + "| " + comparee + multiplyString(" ", len2) + "| " +
-                out.get(i).equals(got.get(i)) + multiplyString(" ", len3) + "| " + times.get(i)/timeBase + timeType + "\n"
+                out.get(i).equals(got.get(i)) + multiplyString(" ", len3) + "| " + (double)times.get(i)/timeBase + timeType + "\n"
                 , comparator.equals(comparee));
 
     }
@@ -118,5 +121,15 @@ public class JohnTestsJR { //first name John last name JR
 
         return "" + str;
     }
+
+    private void runScreen(){
+        WindowTests win = new WindowTests();
+        JohnTest[] arr = new JohnTest[size];
+        for(int i=0; i<size; i++){
+            arr[i] = makeTest(i, false, 1, "ns");
+        }
+        win.fire(arr);
+    }
+
 
 }
