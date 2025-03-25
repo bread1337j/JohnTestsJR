@@ -1,4 +1,4 @@
-import JohnTest.JohnTestsJR;
+import JohnTestsJR.JohnTestsJR;
 
 import java.util.function.Function;
 
@@ -32,6 +32,9 @@ public class Example {
         jr.queue(g, a, "-1");
         jr.queue((Function<Integer[], Integer>)ExampleFunctions::add, a, "3"); //example one liner
         jr.queue(f, a, "3");
+        jr.queue((Function<Integer[], Integer>)ExampleFunctions::square, 25, "1401412418949127417281247148748901284"); //this will be wrong
+        jr.queue(1, "1");
+        jr.queue(new Integer[]{1}, "1");
         jr.fire();
         jr.displayDebug();
     }

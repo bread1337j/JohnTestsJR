@@ -8,4 +8,7 @@ public class ExampleFunctions {
         return arr[0] + arr[1];
     }
 
+    public static Integer square(Integer[] arr) {
+        return arr[0] * arr[0];
+    }
 }

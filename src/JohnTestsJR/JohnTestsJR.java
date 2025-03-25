@@ -1,12 +1,9 @@
-package JohnTest;
+package JohnTestsJR;
 
-import java.awt.*;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.function.Function;
-class JohnTest { //it's like a singular John Test like JohnTests will have multiple tests but this is just one guy
+class JohnTest { //it's like a singular John Test like JohnTests will have multiple tests but this is just one chill guy
     String str;
     boolean result;
     public JohnTest(String str, boolean result) {
@@ -16,13 +13,11 @@ class JohnTest { //it's like a singular John Test like JohnTests will have multi
 }
 public class JohnTestsJR { //first name John last name JR
 
-    private ArrayList<Function> ops;
-    private ArrayList<Object[]> in;
-    private ArrayList<String> got;
-    private ArrayList<String> out;
-    private ArrayList<Long> times;
-    private Class<?> T1;
-    private Class<?> T2;
+    private ArrayList<Function> ops; //functions
+    private ArrayList<Object[]> in; //args
+    private ArrayList<String> out; //expected output
+    private ArrayList<String> got; //result output
+    private ArrayList<Long> times; //time taken to execute each function
     private int size;
 
     public JohnTestsJR(){
@@ -37,8 +32,23 @@ public class JohnTestsJR { //first name John last name JR
         times = new ArrayList<>(n);
         size = 0;
     }
-
-
+    public Object doNOTHING(Object[] in){ //if this is static, everything breaks because lmao
+        return in[0];
+    }
+    public static <T> T[] createArray(Class<T> t) {
+        return (T[]) Array.newInstance(t, 1);
+    }
+    public void queue(Object arg, String expected){
+        queue((Function<Object[], Object>)this::doNOTHING, arg, expected);
+    }
+    public void queue(Object[] arg, String expected){
+        add((Function<Object[], Object>)this::doNOTHING, arg, expected);
+    }
+    public void queue(Function f, Object arg, String expected){
+        Object[] arr = createArray(arg.getClass()); //god bless object oriented programming
+        arr[0] = arg;
+        add(f, arr, expected);
+    }
     public void queue(Function f, Object[] args, String expected){
         add(f, args, expected);
     }

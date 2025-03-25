@@ -1,4 +1,4 @@
-package JohnTest;
+package JohnTestsJR;
 
 import javax.swing.*;
 import java.awt.*;
