@@ -8,14 +8,17 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
     private JPanel pn;
     private JFrame fr;
     private JScrollPane jsp;
-
+    private boolean darkMode;
 
     public WindowTests() {
         pn = new JPanel();
         fr = new JFrame();
         jsp = new JScrollPane(pn);
+        darkMode = false;
     }
-
+    public void setDarkMode(boolean darkMode) {
+        this.darkMode = darkMode;
+    }
     private void configStuff(){
         fr.setExtendedState(JFrame.MAXIMIZED_BOTH);
         pn.setLayout(new BoxLayout(pn, BoxLayout.Y_AXIS));
@@ -36,8 +39,16 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
         pn.removeAll();
         configStuff();
 
-        pn.add(formatStr("Test # |Expected:                      | Result:                       | Correct?  | Time taken:\n"));
-        pn.add(formatStr("-------|-------------------------------|-------------------------------|-----------|------------\n"));
+        JLabel l1 = (formatStr("Test # |Expected:                      | Result:                       | Correct?  | Time taken:\n"));
+        JLabel l2 = (formatStr("-------|-------------------------------|-------------------------------|-----------|------------\n"));
+        if(darkMode) {
+            pn.setBackground(Color.BLACK);
+            l1.setForeground(Color.WHITE);
+            l2.setForeground(Color.WHITE);
+        }
+        pn.add(l1);
+        pn.add(l2);
+
         int c = 0;
         for(int i=0; i<tests.length; i++){
             JLabel l = formatStr(tests[i].str);
@@ -62,6 +73,7 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
         }
         pn.add(resultpt2);
         pn.add(resultpt1);
+
         open();
     }
 
