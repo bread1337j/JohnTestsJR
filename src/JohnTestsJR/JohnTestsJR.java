@@ -19,6 +19,9 @@ public class JohnTestsJR { //first name John last name JR
     private ArrayList<String> got; //result output
     private ArrayList<Long> times; //time taken to execute each function
     private int size;
+    private boolean isShort;
+    private int timeBase;
+    private String timeStr;
 
     public JohnTestsJR(){
         this(10);
@@ -31,7 +34,46 @@ public class JohnTestsJR { //first name John last name JR
         out = new ArrayList<>(n); //I HATE QUEUES!!!!!!!!!!!!!!!!!!!!!!!!!!!! SMITE THE ABSTRACTION DEMONS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         times = new ArrayList<>(n);
         size = 0;
+        isShort = true;
+        timeBase = 1;
+        timeStr = "ns";
     }
+
+    public void config(boolean isShort, int timeBase, String timeStr){
+        this.isShort = isShort;
+        this.timeBase = timeBase;
+        this.timeStr = timeStr;
+    }
+    public void config(boolean isShort, int timeBase){
+        this.isShort = isShort;
+        this.timeBase = timeBase;
+    }
+    public void config(boolean isShort){
+        this.isShort = isShort;
+    }
+    public void config(int timeBase, String timeStr){
+        this.timeBase = timeBase;
+        this.timeStr = timeStr;
+    }
+    public void config(int timeBase){
+        this.timeBase = timeBase;
+    }
+    public void config(String timeStr){
+        this.timeStr = timeStr;
+    }
+
+
+    //non lobotomized version of the 6 methods above
+    public void setIsShort(boolean isShort){
+        this.isShort = isShort;
+    }
+    public void setTimeBase(int timeBase){
+        this.timeBase = timeBase;
+    }
+    public void setTimeStr(String timeStr){
+        this.timeStr = timeStr;
+    }
+
     public Object doNOTHING(Object[] in){ //if this is static, everything breaks because lmao
         return in[0];
     }
@@ -78,6 +120,7 @@ public class JohnTestsJR { //first name John last name JR
         System.out.println(size);
         //System.out.println(BuildStringer(true, 1_000_000, "ms"));
         runScreen();
+        run();
     }
     private String multiplyString(String s, int n){
         StringBuilder out = new StringBuilder();
@@ -132,13 +175,17 @@ public class JohnTestsJR { //first name John last name JR
         return "" + str;
     }
 
-    private void runScreen(){
+    public void runScreen(){
         WindowTests win = new WindowTests();
         JohnTest[] arr = new JohnTest[size];
         for(int i=0; i<size; i++){
-            arr[i] = makeTest(i, false, 1, "ns");
+            arr[i] = makeTest(i, isShort, timeBase, timeStr);
         }
         win.fire(arr);
+    }
+
+    public void run(){
+        System.out.println(BuildStringer(isShort, timeBase, timeStr));
     }
 
 

@@ -11,6 +11,8 @@ public class Example {
 
         Integer[] a = new Integer[]{1, 2};
 
+
+        jr.config(true, 1_000_000, "ms"); //this will make it shorten strings that got too long, and convert time taken to miliseconds
         /*
         Important disclaimer:
         I have no clue what I am doing and as a result this might be a very stupid implementation
@@ -36,6 +38,8 @@ public class Example {
         jr.queue(1, "1");
         jr.queue(new Integer[]{1}, "1");
         jr.fire();
-        jr.displayDebug();
+        //jr.displayDebug();
+        jr.run(); //this will print to console
+        jr.runScreen(); //this will output to a window
     }
 }
