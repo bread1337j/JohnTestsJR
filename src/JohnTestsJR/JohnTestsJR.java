@@ -188,5 +188,13 @@ public class JohnTestsJR { //first name John last name JR
         System.out.println(BuildStringer(isShort, timeBase, timeStr));
     }
 
+    public void clear(){
+        ops = new ArrayList<>(size);
+        in = new ArrayList<>(size);
+        got = new ArrayList<>(size);
+        out = new ArrayList<>(size);
+        times = new ArrayList<>(size);
+        size = 0;
+    }
 
 }
