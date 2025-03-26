@@ -35,8 +35,12 @@ public class Example {
         jr.queue((Function<Integer[], Integer>)ExampleFunctions::add, a, "3"); //example one liner
         jr.queue(f, a, "3");
         jr.queue((Function<Integer[], Integer>)ExampleFunctions::square, 25, "1401412418949127417281247148748901284"); //this will be wrong
+        jr.queue(JohnTestsJR.funcifierII(ExampleFunctions::square2), 5, "25"); //funcifiers exist to convert non-array functions into array functions
+
         jr.queue(1, "1");
         jr.queue(new Integer[]{1}, "1");
+
+
         jr.fire();
         //jr.displayDebug();
         jr.run(); //this will print to console

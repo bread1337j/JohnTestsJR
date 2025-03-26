@@ -11,4 +11,6 @@ public class ExampleFunctions {
     public static Integer square(Integer[] arr) {
         return arr[0] * arr[0];
     }
+
+    public static Integer square2(Integer n){return n * n;}
 }

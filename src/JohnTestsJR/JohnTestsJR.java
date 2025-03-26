@@ -77,7 +77,28 @@ public class JohnTestsJR { //first name John last name JR
     public Object doNOTHING(Object[] in){ //if this is static, everything breaks because lmao
         return in[0];
     }
-    public static <T> T[] createArray(Class<T> t) {
+
+
+    public static Function<Object[], Object> funcifierII(Function<Integer, Integer> f){
+        Function<Object[], Object> out = (Object[] n)->f.apply((Integer) n[0]);
+        return out;
+    }
+    public static Function<Object[], Object> funcifierStrS(Function<String, String > f){
+        Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
+        return out;
+    }
+    public static Function<Object[], Object> funcifierIStr(Function<Integer, String> f){
+        Function<Object[], Object> out = (Object[] n)->f.apply((Integer) n[0]);
+        return out;
+    }
+    public static Function<Object[], Object> funcifierStrI(Function<String, Integer> f){
+        Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
+        return out;
+    }
+
+
+
+    private static <T> T[] createArray(Class<T> t) {
         return (T[]) Array.newInstance(t, 1);
     }
     public void queue(Object arg, String expected){
@@ -86,6 +107,7 @@ public class JohnTestsJR { //first name John last name JR
     public void queue(Object[] arg, String expected){
         add((Function<Object[], Object>)this::doNOTHING, arg, expected);
     }
+
     public void queue(Function f, Object arg, String expected){
         Object[] arr = createArray(arg.getClass()); //god bless object oriented programming
         arr[0] = arg;
