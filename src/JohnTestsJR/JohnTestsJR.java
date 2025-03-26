@@ -79,11 +79,11 @@ public class JohnTestsJR { //first name John last name JR
     }
 
 
-    public static Function<Object[], Object> funcifierII(Function<Integer, Integer> f){
+    public static Function<Object[], Object> funcifierII(Function<Integer, Integer> f){ //even though these are different params, the function cant be overloaded because the object is still Function<>
         Function<Object[], Object> out = (Object[] n)->f.apply((Integer) n[0]);
         return out;
     }
-    public static Function<Object[], Object> funcifierStrS(Function<String, String > f){
+    public static Function<Object[], Object> funcifierStrStr(Function<String, String > f){
         Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
         return out;
     }
@@ -95,6 +95,18 @@ public class JohnTestsJR { //first name John last name JR
         Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
         return out;
     }
+	public static Function<Object[], Object> functifierStrD(Function<String, Double> f){
+		Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
+		return out;
+	}
+	public static Function<Object[], Object> functifierDStr(Function<Double, String> f){
+		Function<Object[], Object> out = (Object[] n)->f.apply((Double) n[0]);
+		return out;
+	}
+	public static Function<Object[], Object> functifierDD(Function<Double, Double> f){
+		Function<Object[], Object> out = (Object[] n)->f.apply((Double) n[0]);
+		return out;
+	}
 
 
 
