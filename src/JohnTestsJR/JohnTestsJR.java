@@ -95,15 +95,15 @@ public class JohnTestsJR { //first name John last name JR
         Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
         return out;
     }
-	public static Function<Object[], Object> functifierStrD(Function<String, Double> f){
+	public static Function<Object[], Object> funcifierStrD(Function<String, Double> f){
 		Function<Object[], Object> out = (Object[] n)->f.apply((String) n[0]);
 		return out;
 	}
-	public static Function<Object[], Object> functifierDStr(Function<Double, String> f){
+	public static Function<Object[], Object> funcifierDStr(Function<Double, String> f){
 		Function<Object[], Object> out = (Object[] n)->f.apply((Double) n[0]);
 		return out;
 	}
-	public static Function<Object[], Object> functifierDD(Function<Double, Double> f){
+	public static Function<Object[], Object> funcifierDD(Function<Double, Double> f){
 		Function<Object[], Object> out = (Object[] n)->f.apply((Double) n[0]);
 		return out;
 	}
