@@ -71,7 +71,7 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
             }else{
                 l.setForeground(Color.RED);
             }
-            l.setText(l.test.str);
+            //l.setText(l.test.str);
             jlArr[i] = l;
             pn.add(l);
         }

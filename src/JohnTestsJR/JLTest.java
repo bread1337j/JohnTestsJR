@@ -6,7 +6,7 @@ import java.awt.*;
 public class JLTest extends JLabel{ //not part of the Tests family, kinda an outcast
     //stores all the info to make his test, and can toggle whether the JFrame text is compacted
 
-    public JLTest label;
+    //public JLTest label;
     public int i;
     public boolean isShort;
     public String tb;
@@ -23,9 +23,10 @@ public class JLTest extends JLabel{ //not part of the Tests family, kinda an out
         this.tb = tb;
         this.t = t;
         this.isShort = true;
+        this.tester = tester;
         this.test = tester.makeTest(i, true, t, tb);
-        this.label = new JLTest(test.str); //a person who thinks all the time has nothing to think about except thoughts
-        this.label.setText(this.test.str);
+        //this.label = new JLTest(test.str); //a person who thinks all the time has nothing to think about except thoughts
+        this.setText(this.test.str);
     }
 
     private JLabel formatStr(String s){
@@ -36,7 +37,7 @@ public class JLTest extends JLabel{ //not part of the Tests family, kinda an out
 
     public void toggleShort(){
         this.isShort = !this.isShort;
-        this.test = tester.makeTest(i, this.isShort, t, tb);
-        this.label.setText(test.str);
+        this.test = this.tester.makeTest(i, this.isShort, t, tb);
+        this.setText(test.str);
     }
 }
