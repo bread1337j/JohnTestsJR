@@ -13,6 +13,7 @@ public class Example {
 
 
         jr.config(true, 1_000_000, "ms"); //this will make it shorten strings that got too long, and convert time taken to miliseconds
+        jr.windowConfig(true); //will turn on dark mode
         /*
         Important disclaimer:
         I have no clue what I am doing and as a result this might be a very stupid implementation
@@ -40,7 +41,7 @@ public class Example {
         jr.queue(1, "1");
         jr.queue(new Integer[]{1}, "1");
 
-
+        System.out.println(f.toString());
         jr.fire();
         //jr.displayDebug();
         jr.run(); //this will print to console

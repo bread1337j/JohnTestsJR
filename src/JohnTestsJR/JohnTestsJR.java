@@ -6,6 +6,7 @@ import java.util.function.Function;
 class JohnTest { //it's like a singular John Test like JohnTests will have multiple tests but this is just one chill guy
     String str;
     boolean result;
+    int i;
     public JohnTest(String str, boolean result) {
         this.str = str;
         this.result = result;
@@ -22,7 +23,7 @@ public class JohnTestsJR { //first name John last name JR
     private boolean isShort;
     private int timeBase;
     private String timeStr;
-
+    private boolean darkMode;
     public JohnTestsJR(){
         this(10);
     }
@@ -37,6 +38,12 @@ public class JohnTestsJR { //first name John last name JR
         isShort = true;
         timeBase = 1;
         timeStr = "ns";
+        this.darkMode = false;
+    }
+
+
+    public void windowConfig(boolean darkMode){
+        this.darkMode = darkMode;
     }
 
     public void config(boolean isShort, int timeBase, String timeStr){
@@ -199,11 +206,12 @@ public class JohnTestsJR { //first name John last name JR
 
     public void runScreen(){
         WindowTests win = new WindowTests();
-        JohnTest[] arr = new JohnTest[size];
-        for(int i=0; i<size; i++){
-            arr[i] = makeTest(i, isShort, timeBase, timeStr);
-        }
-        win.fire(arr);
+        //JohnTest[] arr = new JohnTest[size];
+        //for(int i=0; i<size; i++){
+         //   arr[i] = makeTest(i, isShort, timeBase, timeStr);
+        //}
+        win.setDarkMode(this.darkMode);
+        win.fire(this, size, this.timeBase, this.timeStr);
     }
 
     public void run(){

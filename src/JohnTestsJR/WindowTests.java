@@ -2,12 +2,14 @@ package JohnTestsJR;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class WindowTests extends JScrollPane { //first name Window last name Tests
 
     private JPanel pn;
     private JFrame fr;
     private JScrollPane jsp;
+    private JLTest[] jlArr;
     private boolean darkMode;
 
     public WindowTests() {
@@ -16,6 +18,9 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
         jsp = new JScrollPane(pn);
         darkMode = false;
     }
+
+
+
     public void setDarkMode(boolean darkMode) {
         this.darkMode = darkMode;
     }
@@ -28,14 +33,19 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
         fr.add(jsp);
         fr.setVisible(true);
     }
-
-    private JLabel formatStr(String s){
-        JLabel l = new JLabel(s);
+    private JLabel formatStr(String str){
+        JLabel l = new JLabel(str);
+        l.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+        return l;
+    }
+    private JLTest formatStr(JohnTestsJR tester, int i, int t, String tb){
+        JLTest l = new JLTest(tester, i, tb, t);
         l.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
         return l;
     }
 
-    public void fire(JohnTest[] tests){
+    public void fire(JohnTestsJR tester, int len, int t, String tb){
+        jlArr = new JLTest[len];
         pn.removeAll();
         configStuff();
 
@@ -50,18 +60,23 @@ public class WindowTests extends JScrollPane { //first name Window last name Tes
         pn.add(l2);
 
         int c = 0;
-        for(int i=0; i<tests.length; i++){
-            JLabel l = formatStr(tests[i].str);
-            if(tests[i].result){
+        for(int i=0; i<len; i++){
+
+            JLTest l = formatStr(tester, i, t, tb);
+            ML e = new ML();
+            l.addMouseListener(e);
+            if(l.test.result){
                 l.setForeground(Color.GREEN);
                 c++;
             }else{
                 l.setForeground(Color.RED);
             }
+            l.setText(l.test.str);
+            jlArr[i] = l;
             pn.add(l);
         }
 
-        double percentCorrect =100 * (double)c / tests.length;
+        double percentCorrect =100 * (double)c / len;
         JLabel resultpt2 = (formatStr("       |                               |                               |-----------|------------\n"));
         JLabel resultpt1 = (formatStr(("-------|-------------------------------|-------------------------------| % Correct: " + percentCorrect + "%")));
         if(percentCorrect == 100){
